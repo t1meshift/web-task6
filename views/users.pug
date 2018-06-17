@@ -1,0 +1,24 @@
+extends layout
+
+block content
+    h1= task
+
+    if err === 1
+        +breadcrumb()
+        h3 Ошибка БД.
+        p= errDesc
+
+    else
+        +breadcrumb("Пользователи")
+        div.container
+            h3 Пользователи
+            if customers.length === 0
+                +alert("info")
+                    +icn-info
+                    p Нет пользователей.
+            else
+                div.container
+                    div.row
+                        each customer in customers
+                            div.col-md-4(class="col-sm-6")
+                                +card("/user/"+customer.image, customer.name, customer.desc, "Показать", "/user/"+customer.uid)

@@ -1,0 +1,6 @@
+# node_modules as they could be loaded from NPM
+node_modules
+# Package lock as it generates automatically
+package-lock.json
+# JetBrains internal files
+.idea

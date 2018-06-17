@@ -1,0 +1,33 @@
+mixin icn-wheelchair
+    i.far(class="fa-accessible-icon")
+
+mixin icn-home
+    i.fas(class="fa-home")
+
+mixin icn-info
+    i.fas(class="fa-info-circle")
+
+mixin navbar(title)
+    nav(class="navbar navbar-expand-lg navbar-light bg-light")
+        a.navbar-brand(href="/")
+            +icn-home
+            span= title
+
+mixin breadcrumb(...names)
+    nav
+        ol.breadcrumb
+            li.breadcrumb-item Сайт
+            each nameItem, ind in names
+                li.breadcrumb-item(class= {active: ind === names.length-1})= nameItem
+
+mixin card(imgSrc, title, text, btnText, btnHref)
+    div.card
+        img.card-img-top(src=imgSrc style="height: 250pt")
+        div.card-body
+            h5.card-title= title
+            p.card-text(style="overflow: hidden; height: 100pt;")!= text
+            a.btn(class="btn-primary" href=btnHref)= btnText
+
+mixin alert(context)
+    div.alert(class="alert-"+context)
+        block
