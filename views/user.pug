@@ -4,17 +4,17 @@ block content
   h1= task
 
   if err === 1
-    +breadcrumb("Пользователи", "Ошибка")
+    +breadcrumb({name: "Пользователи", href: "/users"}, {name: "Ошибка"})
     h3 Ошибка БД.
     p= errDesc
 
   else if err === 2
-    +breadcrumb("Пользователи", "Ошибка")
+    +breadcrumb({name: "Пользователи", href: "/users"}, {name: "Ошибка"})
     h3 Ошибка
     p= errDesc
 
   else
-    +breadcrumb("Пользователи", customer.name)
+    +breadcrumb({name: "Пользователи", href: "/users"}, {name: customer.name})
     div.container
       h3 Пользователь #{customer.login} (id #{custId}):
       div.media(class="customer" id=customer.login)

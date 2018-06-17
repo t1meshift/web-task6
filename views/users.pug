@@ -4,18 +4,19 @@ block content
     h1= task
 
     if err === 1
-        +breadcrumb()
+        +breadcrumb
         h3 Ошибка БД.
         p= errDesc
 
     else
-        +breadcrumb("Пользователи")
+        +breadcrumb({name: "Пользователи"})
         div.container
             h3 Пользователи
             if customers.length === 0
                 +alert("info")
-                    +icn-info
-                    p Нет пользователей.
+                    p
+                        +icn-info
+                        span Нет пользователей.
             else
                 div.container
                     div.row

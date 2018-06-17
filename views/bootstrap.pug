@@ -7,18 +7,28 @@ mixin icn-home
 mixin icn-info
     i.fas(class="fa-info-circle")
 
-mixin navbar(title)
-    nav(class="navbar navbar-expand-lg navbar-light bg-light")
+mixin navbar(title, ...items)
+    nav(class="navbar navbar-expand-md navbar-dark bg-dark sticky-top")
         a.navbar-brand(href="/")
             +icn-home
             span= title
+        if items
+            - var rnd = ~~(Math.random()*10000)
+            button.navbar-toggler(data-toggle="collapse" data-target="#navbarCollapse" + rnd)
+                span.navbar-toggler-icon
+            div.collapse(class="navbar-collapse" id="navbarCollapse" + rnd)
+                ul.navbar-nav(class="mr-auto")
+                    each item in items
+                        li.nav-item
+                            a.nav-link(href=item.href)= item.name
 
 mixin breadcrumb(...names)
     nav
         ol.breadcrumb
             li.breadcrumb-item Сайт
             each nameItem, ind in names
-                li.breadcrumb-item(class= {active: ind === names.length-1})= nameItem
+                li.breadcrumb-item(class= {active: ind === names.length-1})
+                    a(href=nameItem.href)= nameItem.name
 
 mixin card(imgSrc, title, text, btnText, btnHref)
     div.card
