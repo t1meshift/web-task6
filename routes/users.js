@@ -21,7 +21,7 @@ router.get('/', function(req, res, next) {
         } else {
             const dataBase = client.db(config.db.name);
             const users = dataBase.collection("users");
-            users.find({}).toArray(function(err, docs) {
+            users.find({}).sort({uid: 1}).toArray(function(err, docs) {
                 if (err) {
                     renderError(res, 1, err.toString());
                 } else {
