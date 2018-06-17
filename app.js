@@ -1,12 +1,13 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var logger = require('morgan');
+let createError = require('http-errors');
+let express = require('express');
+let path = require('path');
+let logger = require('morgan');
 
-var userRouter = require('./routes/user');
-var usersRouter = require('./routes/users');
+let userRouter = require('./routes/user');
+let usersRouter = require('./routes/users');
+let apiRouter = require('./routes/api');
 
-var app = express();
+let app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -20,6 +21,7 @@ app.use('/bootstrap', express.static(__dirname + '/node_modules/bootstrap/dist/'
 app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/'));
 app.use('/popperjs', express.static(__dirname + '/node_modules/popper.js/dist/'));
 
+app.use('/api', apiRouter);
 app.use('/user', userRouter);
 app.use('/users', usersRouter);
 app.get('/', function(req, res) {
