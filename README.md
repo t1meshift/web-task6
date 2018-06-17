@@ -13,8 +13,7 @@ to use templates.
 
 ## Installation
 1. Install MongoDB if it is not then run it with DB data in separate directory, e.g. `mongod --dbpath ./mongo`;
-2. Import collection with users from JSON:
-`mongoimport --db web_classes --collection users --file mongodb_users.json`;
+2. Import database from archive: `mongorestore --archive=web_classes.archive --db web_classes`;
 3. Do `npm install` in project directory.
 
 **Optionally:** To restrict DB access, you can create a user in DB with read permission and set a password on 
