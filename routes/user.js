@@ -1,7 +1,7 @@
-var express = require('express');
-var router = express.Router();
-var mongo = require("mongodb").MongoClient;
-var config = require("../config");
+let express = require('express');
+let router = express.Router();
+let mongo = require("mongodb").MongoClient;
+let config = require("../config");
 
 function renderError(response, errCode, errDescr) {
     console.error(errDescr);
@@ -18,24 +18,23 @@ router.get('', function(req, res, next) {
     res.status(403);
     res.send("Nope c:");
 });
-router.get('/:page([0-9]+)', function(req, res, next) {
-    let cid = parseInt(req.params.page);
+router.get('/:userName', function(req, res, next) {
+    let userName = req.params.userName;
     mongo.connect(config.db.url, config.dbConnection, function(err, client) {
         if (err) {
             renderError(res, 1, err.toString());
         } else {
             const dataBase = client.db(config.db.name);
             const users = dataBase.collection("users");
-            users.find({uid: cid}).toArray(function(err, docs) {
+            users.find({login: userName}).toArray(function(err, docs) {
                 if (err) {
                     renderError(res, 1, err.toString());
                 } else if (docs.length !== 1) {
-                    renderError(res, 2, `Пользователь №${cid} не найден :с`);
+                    renderError(res, 2, `Пользователь ${userName} не найден :с`);
                 } else {
                     res.render('user', {
                         task: config.siteName,
-                        custId: cid,
-                        customer: docs[0],
+                        user: docs[0],
                         err: 0,
                     });
                 }

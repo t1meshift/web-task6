@@ -12,7 +12,7 @@ block content
         +breadcrumb({name: "Пользователи"})
         div.container
             h3 Пользователи
-            if customers.length === 0
+            if users.length === 0
                 +alert("info")
                     p
                         +icn-info
@@ -20,6 +20,6 @@ block content
             else
                 div.container
                     div.row
-                        each customer in customers
+                        each user in users
                             div.col-md-4(class="col-sm-6")
-                                +card("/user/"+customer.image, customer.name, customer.desc, "Показать", "/user/"+customer.uid)
+                                +card("/user/"+user.image, user.name, user.desc, "Показать", "/user/"+user.login)

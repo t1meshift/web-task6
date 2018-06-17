@@ -14,11 +14,11 @@ block content
     p= errDesc
 
   else
-    +breadcrumb({name: "Пользователи", href: "/users"}, {name: customer.name})
+    +breadcrumb({name: "Пользователи", href: "/users"}, {name: user.name})
     div.container
-      h3 Пользователь #{customer.login} (id #{custId}):
-      div.media(class="customer" id=customer.login)
-        img(class="align-self-start mr-3" src=customer.image style="max-height:228px;")
+      h3 Пользователь #{user.login}:
+      div.media(class="user" id=user.login)
+        img(class="align-self-start mr-3" src=user.image style="max-height:228px;")
         div.media-body
-          h2.mt-0= customer.name
-          p!= customer.desc
+          h2.mt-0= user.name
+          p!= user.desc

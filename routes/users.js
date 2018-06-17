@@ -1,7 +1,7 @@
-var express = require('express');
-var router = express.Router();
-var mongo = require("mongodb").MongoClient;
-var config = require("../config");
+let express = require('express');
+let router = express.Router();
+let mongo = require("mongodb").MongoClient;
+let config = require("../config");
 
 function renderError(response, errCode, errDescr) {
     console.error(errDescr);
@@ -21,13 +21,13 @@ router.get('/', function(req, res, next) {
         } else {
             const dataBase = client.db(config.db.name);
             const users = dataBase.collection("users");
-            users.find({}).sort({uid: 1}).toArray(function(err, docs) {
+            users.find({login: {$ne: "admin"}}).sort({login: 1}).toArray(function(err, docs) {
                 if (err) {
                     renderError(res, 1, err.toString());
                 } else {
                     res.render('users', {
                         task: config.siteName,
-                        customers: docs,
+                        users: docs,
                         err: 0,
                     });
                 }
