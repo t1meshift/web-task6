@@ -4,7 +4,7 @@ block content
     h1= task
 
     if err === 1
-        +breadcrumb
+        +breadcrumb({name: "Ошибка"})
         h3 Ошибка БД.
         p= errDesc
 

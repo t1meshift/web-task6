@@ -6,7 +6,7 @@ let config = require("../config");
 function renderError(response, errCode, errDescr) {
     console.error(errDescr);
     response.status(500);
-    response.render('index', {
+    response.render('users', {
         task: config.siteName,
         err: errCode,
         errDesc: errDescr,
@@ -21,7 +21,7 @@ router.get('/', function(req, res, next) {
         } else {
             const dataBase = client.db(config.db.name);
             const users = dataBase.collection("users");
-            users.find({login: {$ne: "admin"}}).sort({login: 1}).toArray(function(err, docs) {
+            users.find({login: {$ne: "admin"}}).sort({login: -1}).toArray(function(err, docs) {
                 if (err) {
                     renderError(res, 1, err.toString());
                 } else {
