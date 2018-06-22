@@ -5,11 +5,20 @@ html
   head
     title= task
     link(rel='stylesheet' href="/bootstrap/css/bootstrap.min.css")
-    script(src="/jquery/jquery.slim.js")
+    link(rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous")
+    link(rel='stylesheet' href='/diy/style.css')
+    script(src="/jquery/jquery.js")
     script(src="/popperjs/umd/popper.js")
     script(src="/bootstrap/js/bootstrap.min.js")
-    link(rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous")
+    script(src="/diy/fastDormancy.js")
   body
-    +navbar(task, {href: "/users", name: "Пользователи"}, {href: "/user/t1meshift", name: "Обо мне"})
-    div.container
+    +navbar(task, {
+        href: "/users", name: "Пользователи"
+    }, {
+        href: "/user/t1meshift", name: "Обо мне"
+    }, {
+        href: "http://github.com/t1meshift", name: "Мой GitHub"
+    })
+    div(id="preloader-container")
+    div.container(id="page-content")
       block content

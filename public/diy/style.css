@@ -1,0 +1,72 @@
+#preloader-container {
+    display: none;
+}
+#preloader-container.loading {
+    position: fixed;
+    display: block;
+    width: 200px;
+    height: 200px;
+    top: calc(50% - 100px);
+    left: calc(50% - 100px);
+    background: white url("/diy/preloader.gif") no-repeat fixed center;
+    opacity: 1;
+    animation: showLoading 0.5s ease-out;
+}
+.content-loading {
+    visibility: hidden;
+    opacity: 0;
+    animation: hideContent 0.5s ease-out;
+}
+
+@keyframes hideContent {
+    0% {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    50% {
+        visibility: visible;
+        opacity: 0.5;
+    }
+    100% {
+        visibility: hidden;
+        opacity: 0;
+    }
+}
+@keyframes showContent {
+    0% {
+        visibility: hidden;
+        opacity: 0;
+    }
+    1% {
+        visibility: visible;
+        opacity: 0;
+    }
+    50% {
+        visibility: visible;
+        opacity: 0.5;
+    }
+    100% {
+        visibility: visible;
+        opacity: 1;
+    }
+}
+
+@keyframes showLoading {
+    0% {
+        display: none;
+        opacity: 0;
+    }
+    1% {
+        display: block;
+        opacity: 0;
+    }
+    50% {
+        display: block;
+        opacity: 0.5;
+    }
+    100% {
+        display: block;
+        opacity: 1;
+    }
+}
