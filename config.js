@@ -19,6 +19,17 @@ else {
     dbConnectOptions = {};
 }
 
+let userRouter = require('./routes/user');
+let usersRouter = require('./routes/users');
+let apiRouter = require('./routes/api');
+
+let routers = {
+    user: userRouter,
+    users: usersRouter,
+    api: apiRouter,
+};
+
 module.exports.siteName = siteName;
 module.exports.db = db;
 module.exports.dbConnection = dbConnectOptions;
+module.exports.routers = routers;

@@ -2,10 +2,8 @@ let createError = require('http-errors');
 let express = require('express');
 let path = require('path');
 let logger = require('morgan');
-
-let userRouter = require('./routes/user');
-let usersRouter = require('./routes/users');
-let apiRouter = require('./routes/api');
+let config = require('./config');
+let routers = config.routers;
 
 let app = express();
 
@@ -21,13 +19,10 @@ app.use('/bootstrap', express.static(__dirname + '/node_modules/bootstrap/dist/'
 app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/'));
 app.use('/popperjs', express.static(__dirname + '/node_modules/popper.js/dist/'));
 
-app.use('/api', apiRouter);
-app.use('/user', userRouter);
-app.use('/users', usersRouter);
-app.get('/', function(req, res) {
-  res.redirect('/users');
-});
-
+app.use('/api', routers.api);
+app.use('/user', routers.user);
+app.use('/users', routers.users);
+app.use('/', routers.users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
