@@ -1,8 +1,6 @@
 extends layout
 
 block content
-    h1= task
-
     if err === 1
         +breadcrumb({name: "Ошибка"})
         h3 Ошибка БД.
@@ -10,7 +8,7 @@ block content
 
     else
         +breadcrumb({name: "Пользователи"})
-        div.container
+        div.container-fluid
             h3 Пользователи
             if users.length === 0
                 +alert("info")

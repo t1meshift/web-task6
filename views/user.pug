@@ -1,8 +1,6 @@
 extends layout
 
 block content
-  h1= task
-
   if err === 1
     +breadcrumb({name: "Пользователи", href: "/users"}, {name: "Ошибка"})
     h3 Ошибка БД.
@@ -15,10 +13,10 @@ block content
 
   else
     +breadcrumb({name: "Пользователи", href: "/users"}, {name: user.name})
-    div.container
+    div.container-fluid
       h3 Пользователь #{user.login}:
-      div.media(class="user" id=user.login)
-        img(class="align-self-start mr-3" src=user.image style="max-height:228px;")
+      div.media(class="user" id=user.image)
+        img(class="align-self-start mr-3" src="/user/"+user.image style="max-height:228px;")
         div.media-body
           h2.mt-0= user.name
           p!= user.desc
