@@ -10,7 +10,8 @@ html
     script(src="/jquery/jquery.js")
     script(src="/popperjs/umd/popper.js")
     script(src="/bootstrap/js/bootstrap.min.js")
-    script(src="/diy/fastDormancy.js")
+    unless error
+      script(src="/diy/fastDormancy.js")
   body
     +navbar(task, {
         href: "/users", name: "Пользователи"

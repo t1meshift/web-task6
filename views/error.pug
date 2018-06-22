@@ -1,6 +1,8 @@
 extends layout
 
 block content
+  div.alert.alert-danger(role="alert" style="margin-top: 5px;")
+    span Во время выполнения запроса произошла ошибка.
   h1= message
   h2= error.status
   pre #{error.stack}

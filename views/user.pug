@@ -1,17 +1,6 @@
 extends layout
 
 block content
-  if err === 1
-    +breadcrumb({name: "Пользователи", href: "/users"}, {name: "Ошибка"})
-    h3 Ошибка БД.
-    p= errDesc
-
-  else if err === 2
-    +breadcrumb({name: "Пользователи", href: "/users"}, {name: "Ошибка"})
-    h3 Ошибка
-    p= errDesc
-
-  else
     +breadcrumb({name: "Пользователи", href: "/users"}, {name: user.name})
     div.container-fluid
       h3 Пользователь #{user.login}:

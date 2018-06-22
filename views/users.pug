@@ -1,23 +1,17 @@
 extends layout
 
 block content
-    if err === 1
-        +breadcrumb({name: "Ошибка"})
-        h3 Ошибка БД.
-        p= errDesc
-
-    else
-        +breadcrumb({name: "Пользователи"})
-        div.container-fluid
-            h3 Пользователи
-            if users.length === 0
-                +alert("info")
-                    p
-                        +icn-info
-                        span Нет пользователей.
-            else
-                div.container
-                    div.row
-                        each user in users
-                            div.col-md-4(class="col-sm-6")
-                                +card("/user/"+user.image, user.name, user.desc, "Показать", "/user/"+user.login)
+    +breadcrumb({name: "Пользователи"})
+    div.container-fluid
+        h3 Пользователи
+        if users.length === 0
+            +alert("info")
+                p
+                    +icn-info
+                    span Нет пользователей.
+        else
+            div.container
+                div.row
+                    each user in users
+                        div.col-md-4.col-sm-6.col-lg-3
+                            +card("/user/"+user.image, user.name, user.desc, "Показать", "/user/"+user.login)
