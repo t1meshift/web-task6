@@ -3,6 +3,7 @@ const preloaderSelector = "#preloader-container";
 let historyStateObj = {};
 
 function showPreloader() {
+    $(preloaderSelector).css("top", `calc(50% - 100px + ${$(".navbar").height()}px)`);
     $(placeholderSelector).addClass("content-loading");
     $(preloaderSelector).addClass("loading");
 
@@ -16,6 +17,7 @@ function hidePreloader() {
     }, 495);
 }
 function fastNavigate(destination, pushState = true) {
+    showPreloader();
     $.ajax({
         url: destination,
         dataType: "html",
@@ -27,26 +29,20 @@ function fastNavigate(destination, pushState = true) {
             hidePreloader();
         },
         error: function () {
-            window.navigate(destination);
+            window.location = destination;
         }
     });
 }
 function bindLinkHandler(context) {
-    console.log(context.find("a").filter);
     context.find("a").filter(function() {
-        console.log(this);
         return this.hostname && this.hostname !== location.hostname;
     }).addClass("link-external"); // marking external links cuz they can't be lazy-loaded
 
     let selector = context.find("a:not(.link-external)");
 
     selector.click(function (evt) {
-        console.log(evt, "click");
         evt.preventDefault(); // prevent navigating to the destination
         evt.stopPropagation();
-
-        showPreloader();
-
         let destination = $(this).attr('href');
         fastNavigate(destination);
     });
